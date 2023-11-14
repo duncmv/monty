@@ -34,23 +34,23 @@ int main(int ac, char **av)
 		x = getline(&line, &n, f);
 		if (x == -1) /* end of file */
 		{
+			fclose(f);
 			free(line);
-			/* free(cmd); */
 			free_stack(top);
 			break;
 		}
 		line_number++;
-		cmd = strtok(line, " ");
+		cmd = strtok(line, "\n ");
 		if (cmd != NULL)
 		{
-			elem = strtok(NULL, " ");
+			elem = strtok(NULL, "\n ");
 			p = get_op(cmd);
 			run_op(&top, p, line_number, cmd);
 		}
 		if (run_status == -1)
 		{
+			fclose(f);
 			free(line);
-			/* free(cmd); */
 			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
@@ -75,10 +75,7 @@ void (*get_op(char *s))(stack_t **, unsigned int)
 	while (i < 2)
 	{
 		if (strcmp(s, ops[i].opcode) == 0)
-		{
-			printf("Function found\n");
 			return (ops[i].f);
-		}
 		i++;
 	}
 	return (NULL);

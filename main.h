@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <string.h>
 
-typedef int (*builtInHandler)(exec_info *info);
+/*typedef int (*builtInHandler)(exec_info *info);*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
