@@ -1,10 +1,13 @@
 #ifndef MAIN_H
 #define MAIN_H
+#define MAX_LINE 1000 /* Maximum input line */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdarg.h>
+#include <unistd.h>
 
 /*typedef int (*builtInHandler)(exec_info *info);*/
 /**
@@ -43,4 +46,8 @@ void (*get_op(char *s))(stack_t **, unsigned int);
 void run_op(stack_t **top, void (*f)(stack_t **, unsigned int), unsigned int, char *);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+size_t _getline(char s[], int lim, FILE *f);
+size_t _dprintf(const int fd, const char *format, ...);
+FILE *_fdopen(int fd, const char *mod);
+
 #endif

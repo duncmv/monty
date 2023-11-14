@@ -9,12 +9,12 @@
  *
  * Return: The number of characters read or 0 if non
  */
-int _getline(char s[], int lim)
+int _getline(char s[], int lim, FILE *f)
 {
 	int c; /* The character read */
 	int i; /* counter variable */
 
-	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
+	for (i = 0; i < lim - 1 && (c = fgetc(f)) != EOF && c != '\n'; i++)
 		s[i] = c;
 
 	if (c == '\n')

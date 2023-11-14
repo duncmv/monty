@@ -16,26 +16,24 @@ int main(int ac, char **av)
 	FILE *f = fopen(av[1], "r");
 	int x;
 	unsigned int line_number = 0;
-	char *line = NULL, *cmd;
-	size_t n = 0;
+	char line[MAX_LINE], *cmd;
 	void (*p)(stack_t **, unsigned int);
 	stack_t *top = NULL;
 
 	if (ac != 2)
-		dprintf(2, "USAGE: monty file\n"), exit(EXIT_FAILURE);
+		_dprintf(2, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	if (f == NULL)
 	{
-		dprintf(2, "Error: Can't open file %s\n", av[1]);
+		_dprintf(2, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 	while (1)
 	{
 		*(&run_status) = 0;
-		x = getline(&line, &n, f);
-		if (x == -1) /* end of file */
+		x = _getline(line, MAX_LINE, f);
+		if (x == -1 || x == 0) /* end of file */
 		{
 			fclose(f);
-			free(line);
 			free_stack(top);
 			break;
 		}
@@ -50,7 +48,6 @@ int main(int ac, char **av)
 		if (run_status == -1)
 		{
 			fclose(f);
-			free(line);
 			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
@@ -91,7 +88,7 @@ void run_op(stack_t **top, void (*f)(stack_t **, unsigned int), unsigned int l, 
 {
 	if (f == NULL)
 	{
-		dprintf(2, "L%d: unknown instruction %s\n", l, cmd);
+		_dprintf(2, "L%d: unknown instruction %s\n", l, cmd);
 		*(&run_status) = -1;
 		return;
 	}

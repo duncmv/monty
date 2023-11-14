@@ -24,7 +24,7 @@ void push(stack_t **stack, unsigned int line_number)
 			n = atoi(elem);
 			if (n == 0)
 			{
-				dprintf(2, "L%d: usage: push integer\n", l);
+				_dprintf(2, "L%d: usage: push integer\n", l);
 				*(&run_status) = -1;
 				return;
 			}
@@ -33,7 +33,7 @@ void push(stack_t **stack, unsigned int line_number)
 	new = push_stack(stack, n);
 	if (new == NULL)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		_dprintf(2, "Error: malloc failed\n");
 		*(&run_status) = -1;
 	}
 }
