@@ -8,7 +8,7 @@ void print_stack(stack_t *top)
 	if (top != NULL)
 	{
 		printf("%d\n", top->n);
-		print_dlistint(h->next);
+		print_stack(top->next);
 	}
 }
 /**
