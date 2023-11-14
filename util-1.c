@@ -17,7 +17,7 @@ void print_stack(stack_t *top)
  * @n: int to be added as member of node
  * Return: address of new node
  */
-stack_t *push_stack(stack_t **head, const int n)
+stack_t *push_stack(stack_t **top, const int n)
 {
 	stack_t *new = (stack_t *)malloc(sizeof(stack_t));
 
@@ -25,10 +25,10 @@ stack_t *push_stack(stack_t **head, const int n)
 		return (NULL);
 	new->prev = NULL;
 	new->n = n;
-	new->next = *head;
-	if (*head != NULL)
-		(*head)->prev = new;
-	*head = new;
+	new->next = *top;
+	if (*top != NULL)
+		(*top)->prev = new;
+	*top = new;
 
 	return (new);
 }
@@ -44,4 +44,28 @@ void free_stack(stack_t *head)
 		free(head);
 		head = NULL;
 	}
+}
+
+/**
+ * getline - read a line into s, return length
+ * @line: buffer to read into
+ * @lim: the limit of characters read
+ *
+ * Return: The number of characters read or 0 if non
+ */
+int get_line(char s[], int lim)
+{
+	int c; /* The character read */
+	int i; /* counter variable */
+
+	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
+		s[i] = c;
+
+	if (c == '\n')
+	{
+		s[i] = '\n';
+		i++;
+	}
+	s[i] = '\0';
+	return (i);
 }

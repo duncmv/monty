@@ -1,4 +1,7 @@
 #include "main.h"
+
+extern int run_status;
+extern char *elem;
 /**
  * push - pushes to stack
  * @stack: top of stack
@@ -11,7 +14,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (elem != NULL)
 	{
-	/*solution for edge case when elem is 0*/
+		/*solution for edge case when elem is 0*/
 		if (strcmp(elem, "0") == 0)
 		{
 			n = 0;

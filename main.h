@@ -1,12 +1,11 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 #include <stddef.h>
+#include <string.h>
 
-int run_status; 
-char *elem;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -40,7 +39,7 @@ void print_stack(stack_t *top);
 stack_t *push_stack(stack_t **head, const int n);
 void free_stack(stack_t *head);
 void (*get_op(char *s))(stack_t **, unsigned int);
-void run_op(stack_t *, void (*f)(stack_t **, unsigned int), unsigned int, char *);
+void run_op(stack_t **top, void (*f)(stack_t **, unsigned int), unsigned int, char *);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 #endif

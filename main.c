@@ -1,5 +1,8 @@
 #include "main.h"
-#include <stdio.h>
+
+int run_status;
+char *elem;
+
 /**
  * main - main func
  * @ac: arg count
@@ -8,10 +11,12 @@
  */
 int main(int ac, char **av)
 {
+	extern int run_status;
+	extern char *elem;
 	FILE *f = fopen(av[1], "r");
 	int x;
 	unsigned int line_number = 0;
-	char *line = NULL, *cmd = malloc(sizeof(char) * 255);
+	char *line = NULL, *cmd;
 	size_t n = 0;
 	void (*p)(stack_t **, unsigned int);
 	stack_t *top = NULL;
@@ -27,9 +32,10 @@ int main(int ac, char **av)
 	{
 		*(&run_status) = 0;
 		x = getline(&line, &n, f);
-		if (x == -1)
+		if (x == -1) /* end of file */
 		{
-			free(line), free(cmd);
+			free(line);
+			/* free(cmd); */
 			free_stack(top);
 			break;
 		}
@@ -39,35 +45,40 @@ int main(int ac, char **av)
 		{
 			elem = strtok(NULL, " ");
 			p = get_op(cmd);
-			run_op(top, p, line_number, cmd);
+			run_op(&top, p, line_number, cmd);
 		}
 		if (run_status == -1)
 		{
-			free(line), free(cmd);
+			free(line);
+			/* free(cmd); */
 			free_stack(top);
 			exit(EXIT_FAILURE);
 		}
 	}
 	return (0);
 }
+
 /**
- * get_op- function that selects the correct function
+ * get_op - function that selects the correct function
  * @s: operator passed
  * Return: pointer to corresponding func
  */
 void (*get_op(char *s))(stack_t **, unsigned int)
 {
 	instruction_t ops[] = {
-		{"push", push},
-		{"pall", pall},
-		{NULL, NULL}
+	    {"push", push},
+	    {"pall", pall},
+	    {NULL, NULL},
 	};
 	int i = 0;
 
-	while (i < 3)
+	while (i < 2)
 	{
 		if (strcmp(s, ops[i].opcode) == 0)
+		{
+			printf("Function found\n");
 			return (ops[i].f);
+		}
 		i++;
 	}
 	return (NULL);
@@ -79,7 +90,7 @@ void (*get_op(char *s))(stack_t **, unsigned int)
  * @l: line number
  * @cmd: command
  */
-void run_op(stack_t *top, void (*f)(stack_t **, unsigned int), unsigned int l, char *cmd)
+void run_op(stack_t **top, void (*f)(stack_t **, unsigned int), unsigned int l, char *cmd)
 {
 	if (f == NULL)
 	{
@@ -87,5 +98,7 @@ void run_op(stack_t *top, void (*f)(stack_t **, unsigned int), unsigned int l, c
 		*(&run_status) = -1;
 		return;
 	}
-	f(&top, l);
+	f(top, l);
 }
+
+typedef void (*f)(stack_t **, unsigned int), opt;
