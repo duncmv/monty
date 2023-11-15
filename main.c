@@ -17,10 +17,10 @@ int main(int ac, char **av)
 	stack_t *top = NULL;
 
 	if (ac != 2)
-		_dprintf(2, "USAGE: monty file\n"), exit(EXIT_FAILURE);
+		_dprintf(ERR_C, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	if (f == NULL)
 	{
-		_dprintf(2, "Error: Can't open file %s\n", av[1]);
+		_dprintf(ERR_C, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 	while ((x = _getline(line, MAX_LINE, f)) > 0)
@@ -82,7 +82,7 @@ void run_op(stack_t **top, operator f, unsigned int l, char *cmd)
 {
 	if (f == NULL)
 	{
-		_dprintf(2, "L%d: unknown instruction %s\n", l, cmd);
+		_dprintf(ERR_C, "L%d: unknown instruction %s\n", l, cmd);
 		*(&data.run_status) = -1;
 		return;
 	}
