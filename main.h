@@ -1,18 +1,20 @@
 #ifndef MAIN_H
 #define MAIN_H
-#define MAX_LINE 1000 /* Maximum input line */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
+
+#define MAX_LINE 1000	    /* Maximum input line */
+#define ERR_C STDERR_FILENO /* Alias to STDERR_FILENO */
+
 /**
  * struct data_s - store data  to use across funcs
  * @run_status: 0 or -1
  * @elem: arg for command
-*/
+ */
 typedef struct data_s
 {
 	int run_status;
@@ -66,5 +68,8 @@ void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 size_t _getline(char s[], int lim, FILE *f);
 size_t _dprintf(const int fd, const char *format, ...);
+
+void pop(stack_t **top, unsigned int line_num);
+void pint(stack_t **top, unsigned int line_num);
 
 #endif
