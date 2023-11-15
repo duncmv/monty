@@ -99,7 +99,7 @@ void rotr(stack_t **top, unsigned int ln)
 	stack_t *t, *last;
 
 	(void)ln;
-	if (stack_len(*top) < 2)
+	if (*top == NULL || (*top)->next == NULL)
 		return;
 	for (t = *top; t; t = t->next)
 		last = t;
