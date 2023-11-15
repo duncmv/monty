@@ -104,11 +104,11 @@ void rotl(stack_t **top, unsigned int ln)
 		last = t;
 	if (len < 2)
 		return;
-	/* push top to the last and last to the top */
+	/* push top to last so 2nd top becomes top */
 	t = *top;
-	last->next = t->next;
-	t->prev = last->prev;
+	last->next = t;
+	t->prev = last;
+	t->next->prev = NULL;
+	*top = t->next;
 	t->next = NULL;
-	last->prev = NULL;
-	*top = last;
 }
