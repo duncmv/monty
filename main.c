@@ -1,6 +1,5 @@
 #include "main.h"
 
-data_t data;
 
 /**
  * main - main func
