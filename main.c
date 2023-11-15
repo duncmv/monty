@@ -52,18 +52,17 @@ int main(int ac, char **av)
 operator get_op(char *s)
 {
 	instruction_t ops[] = {
-	    {"push", push},
-	    {"pall", pall},
-	    {"pint", pint},
-	    {"pop", pop},
-	    {"swap", swap},
-	    {"add", add},
+	    {"push", push}, {"pall", pall},
+	    {"pint", pint}, {"pop", pop},
+	    {"swap", swap}, {"add", add},
+	    {"sub", sub}, {"div", divi},
+	    {"mul", mul}, {"mod", mod},
 	    {"nop", nop},
 	    {NULL, NULL},
 	};
 	int i = 0;
 
-	while (i < 7)
+	while (i < 11)
 	{
 		if (strcmp(s, ops[i].opcode) == 0)
 			return (ops[i].f);
