@@ -56,11 +56,14 @@ operator get_op(char *s)
 	instruction_t ops[] = {
 	    {"push", push},
 	    {"pall", pall},
+	    {"swap", swap},
+	    {"add", add},
+	    {"nop", nop},
 	    {NULL, NULL},
 	};
 	int i = 0;
 
-	while (i < 2)
+	while (i < 5)
 	{
 		if (strcmp(s, ops[i].opcode) == 0)
 			return (ops[i].f);
