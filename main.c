@@ -1,7 +1,6 @@
 #include "main.h"
 
-int run_status;
-char *elem;
+data_t data;
 
 /**
  * main - main func
@@ -28,21 +27,21 @@ int main(int ac, char **av)
 	}
 	while ((x = _getline(line, MAX_LINE, f)) > 0)
 	{
-		*(&run_status) = 0;
+		*(&data.run_status) = 0;
 		line_number++;
 		cmd = strtok(line, "\n ");
 		if (cmd != NULL)
 		{
-			elem = strtok(NULL, "\n ");
+			data.elem = strtok(NULL, "\n ");
 			p = get_op(cmd);
 			run_op(&top, p, line_number, cmd);
 		}
-		if (run_status == -1)
+		if (data.run_status == -1)
 			break;
 	}
-	if (run_status == -1 || x <= 0) /* if x is EOF or an error occured */
+	if (data.run_status == -1 || x <= 0) /* if x is EOF or an error occured */
 		fclose(f), free_stack(top);
-	if (run_status == -1)
+	if (data.run_status == -1)
 		exit(EXIT_FAILURE);
 	return (0);
 }
@@ -81,7 +80,7 @@ void run_op(stack_t **top, operator f, unsigned int l, char *cmd)
 	if (f == NULL)
 	{
 		_dprintf(2, "L%d: unknown instruction %s\n", l, cmd);
-		*(&run_status) = -1;
+		*(&data.run_status) = -1;
 		return;
 	}
 	f(top, l);

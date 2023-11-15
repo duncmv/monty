@@ -10,20 +10,20 @@ void push(stack_t **stack, unsigned int line_number)
 	int n, l = (int)line_number;
 	stack_t *new;
 
-	if (elem != NULL)
+	if (data.elem != NULL)
 	{
-		/*solution for edge case when elem is 0*/
-		if (strcmp(elem, "0") == 0)
+		/*solution for edge case when data.elem is 0*/
+		if (strcmp(data.elem, "0") == 0)
 		{
 			n = 0;
 		}
 		else
 		{
-			n = atoi(elem);
+			n = atoi(data.elem);
 			if (n == 0)
 			{
 				_dprintf(2, "L%d: usage: push integer\n", l);
-				*(&run_status) = -1;
+				*(&data.run_status) = -1;
 				return;
 			}
 		}
@@ -32,7 +32,7 @@ void push(stack_t **stack, unsigned int line_number)
 	if (new == NULL)
 	{
 		_dprintf(2, "Error: malloc failed\n");
-		*(&run_status) = -1;
+		*(&data.run_status) = -1;
 	}
 }
 /**

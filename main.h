@@ -8,10 +8,18 @@
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
+/**
+ * struct data_s - store data  to use across funcs
+ * @run_status: 0 or -1
+ * @elem: arg for command
+*/
+typedef struct data_s
+{
+	int run_status;
+	char *elem;
+} data_t;
 
-extern int run_status;
-extern char *elem;
-
+extern data_t data;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -46,7 +54,7 @@ typedef void (*operator)(stack_t **stack, unsigned int line_num);
 typedef struct instruction_s
 {
 	char *opcode;
-	operator f;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 void print_stack(stack_t *top);
