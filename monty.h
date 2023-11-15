@@ -79,6 +79,10 @@ size_t _dprintf(const int fd, const char *format, ...);
 
 void pop(stack_t **top, unsigned int line_num);
 void pint(stack_t **top, unsigned int line_num);
+void pchar(stack_t **top, unsigned int ln);
+void pstr(stack_t **top, unsigned int ln);
+void rotl(stack_t **top, unsigned int ln);
+void rotr(stack_t **top, unsigned int ln);
 
 size_t stack_len(const stack_t *h);
 #endif

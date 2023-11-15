@@ -54,24 +54,33 @@ int main(int ac, char **av)
 operator get_op(char *s)
 {
 	instruction_t ops[] = {
-	    {"push", push}, {"pall", pall},
-	    {"pint", pint}, {"pop", pop},
-	    {"swap", swap}, {"add", add},
-	    {"sub", sub}, {"div", divi},
-	    {"mul", mul}, {"mod", mod},
+	    {"push", push},
+	    {"pall", pall},
+	    {"pint", pint},
+	    {"pop", pop},
+	    {"swap", swap},
+	    {"add", add},
+	    {"sub", sub},
+	    {"div", divi},
+	    {"mul", mul},
+	    {"mod", mod},
 	    {"nop", nop},
+	    {"pchar", pchar},
+	    {"pstr", pstr},
+	    {"rotl", rotl},
+	    {"rotr", rotr},
 	    {NULL, NULL},
 	};
-	int i = 0;
+	int i, len;
 
-	while (i < 11)
-	{
+	for (len = 0; ops[len].opcode != NULL; len++)
+		;
+	for (i = 0; i < len; i++)
 		if (strcmp(s, ops[i].opcode) == 0)
 			return (ops[i].f);
-		i++;
-	}
 	return (NULL);
 }
+
 /**
  * run_op - runs the operation
  * @top: top of stack
