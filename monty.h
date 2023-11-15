@@ -7,7 +7,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-#define MAX_LINE 1000	    /* Maximum input line */
+#define MAX_LINE 10000	    /* Maximum input line */
 #define ERR_C STDERR_FILENO /* Alias to STDERR_FILENO */
 
 /**
