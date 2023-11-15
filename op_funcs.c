@@ -61,7 +61,7 @@ void swap(stack_t **stack, unsigned int line_number)
 		*(&data.run_status) = -1;
 		return;
 	}
-	
+
 	temp = (*stack)->next;
 	(*stack)->next = temp->next;
 	if (temp->next != NULL)
