@@ -31,12 +31,12 @@ void divi(stack_t **stack, unsigned int line_number)
 		*(&data.run_status) = -1;
 		return;
 	}
-        if ((*stack)->n == 0)
-        {
-                _dprintf(ERR_C, "L%d: division by zero\n", line_number);
+	if ((*stack)->n == 0)
+	{
+		_dprintf(ERR_C, "L%d: division by zero\n", line_number);
 		*(&data.run_status) = -1;
 		return;
-        }
+	}
 	(*stack)->next->n = (*stack)->next->n / (*stack)->n;
 	*stack = (*stack)->next;
 	free((*stack)->prev);
@@ -74,12 +74,12 @@ void mod(stack_t **stack, unsigned int line_number)
 		*(&data.run_status) = -1;
 		return;
 	}
-        if ((*stack)->n == 0)
-        {
-                _dprintf(ERR_C, "L%d: division by zero\n", line_number);
+	if ((*stack)->n == 0)
+	{
+		_dprintf(ERR_C, "L%d: division by zero\n", line_number);
 		*(&data.run_status) = -1;
 		return;
-        }
+	}
 	(*stack)->next->n = (*stack)->next->n % (*stack)->n;
 	*stack = (*stack)->next;
 	free((*stack)->prev);
