@@ -19,7 +19,7 @@ void sub(stack_t **stack, unsigned int line_number)
 	(*stack)->prev = NULL;
 }
 /**
- * div - divides the top two elements on the stack
+ * divi - divides the top two elements on the stack
  * @stack: top of stack
  * @line_number: line number
  */
@@ -84,4 +84,29 @@ void mod(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
+}
+
+/**
+ * rotr - rotates the stack to the bottom
+ * @top: double pointer to the top
+ * @ln: line number of the operation
+ *
+ * Return: void
+ * The last element of the stack becomes the top element of the stack
+ */
+void rotr(stack_t **top, unsigned int ln)
+{
+	stack_t *t, *last;
+
+	(void)ln;
+	if (stack_len(*top) < 2)
+		return;
+	for (t = *top; t; t = t->next)
+		last = t;
+	/* make the last element to be the top */
+	last->next = *top;
+	last->prev->next = NULL;
+	last->prev = NULL;
+	(*top)->prev = last;
+	*top = last;
 }
