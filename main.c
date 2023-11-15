@@ -28,6 +28,8 @@ int main(int ac, char **av)
 		*(&data.run_status) = 0;
 		line_number++;
 		cmd = strtok(line, "\n ");
+		if (cmd && cmd[0] == '#')
+			continue;
 		if (cmd != NULL)
 		{
 			data.elem = strtok(NULL, "\n ");

@@ -80,7 +80,7 @@ void add(stack_t **stack, unsigned int line_number)
 {
 	if (stack_len(*stack) < 2)
 	{
-		_dprintf(ERR_C, "L%d: can't swap, stack too short\n", line_number);
+		_dprintf(ERR_C, "L%d: can't add, stack too short\n", line_number);
 		*(&data.run_status) = -1;
 		return;
 	}

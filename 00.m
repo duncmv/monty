@@ -1,5 +1,6 @@
 push 5
 push 6
+# pall
 mul
 pall
 push 2
