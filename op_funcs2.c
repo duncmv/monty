@@ -83,7 +83,7 @@ void pstr(stack_t **top, unsigned int ln)
 
 	(void)ln;
 	for (t = *top; t && t->n > 0 && t->n <= 127; t = t->next)
-		putchar('0' + (*top)->n);
+		putchar(t->n);
 	putchar('\n');
 }
 
