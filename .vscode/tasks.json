@@ -11,7 +11,7 @@
 				"-Werror",
 				"-Wextra",
 				"-pedantic",
-				"-std=gnu89",
+				"-std=c89",
         "${fileDirname}/*.c",
         "-o",
         "${fileDirname}/monty"

@@ -1,5 +1,7 @@
 push 5
-nop
+push 7
+pall
+pop
 push 6
 nop
 add

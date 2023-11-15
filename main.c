@@ -63,7 +63,7 @@ operator get_op(char *s)
 	};
 	int i = 0;
 
-	while (i < 5)
+	while (i < 7)
 	{
 		if (strcmp(s, ops[i].opcode) == 0)
 			return (ops[i].f);
