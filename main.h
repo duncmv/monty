@@ -9,7 +9,6 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-/*typedef int (*builtInHandler)(exec_info *info);*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -27,6 +26,13 @@ typedef struct stack_s
 } stack_t;
 
 /**
+ * optr - The handler for a specific operation
+ * @stack: pointer to pointer to a stack
+ * @line_num: current line number
+ **/
+typedef void (*operator)(stack_t **stack, unsigned int line_num);
+
+/**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
@@ -37,17 +43,17 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	operator f;
 } instruction_t;
+
 void print_stack(stack_t *top);
 stack_t *push_stack(stack_t **head, const int n);
 void free_stack(stack_t *head);
-void (*get_op(char *s))(stack_t **, unsigned int);
-void run_op(stack_t **top, void (*f)(stack_t **, unsigned int), unsigned int, char *);
+operator get_op(char *s);
+void run_op(stack_t **top, operator f, unsigned int, char *);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 size_t _getline(char s[], int lim, FILE *f);
 size_t _dprintf(const int fd, const char *format, ...);
-FILE *_fdopen(int fd, const char *mod);
 
 #endif

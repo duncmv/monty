@@ -11,13 +11,11 @@ char *elem;
  */
 int main(int ac, char **av)
 {
-	extern int run_status;
-	extern char *elem;
 	FILE *f = fopen(av[1], "r");
 	int x;
 	unsigned int line_number = 0;
 	char line[MAX_LINE], *cmd;
-	void (*p)(stack_t **, unsigned int);
+	operator p;
 	stack_t *top = NULL;
 
 	if (ac != 2)
@@ -60,7 +58,7 @@ int main(int ac, char **av)
  * @s: operator passed
  * Return: pointer to corresponding func
  */
-void (*get_op(char *s))(stack_t **, unsigned int)
+operator get_op(char *s)
 {
 	instruction_t ops[] = {
 	    {"push", push},
@@ -84,7 +82,7 @@ void (*get_op(char *s))(stack_t **, unsigned int)
  * @l: line number
  * @cmd: command
  */
-void run_op(stack_t **top, void (*f)(stack_t **, unsigned int), unsigned int l, char *cmd)
+void run_op(stack_t **top, operator f, unsigned int l, char *cmd)
 {
 	if (f == NULL)
 	{
@@ -94,5 +92,3 @@ void run_op(stack_t **top, void (*f)(stack_t **, unsigned int), unsigned int l, 
 	}
 	f(top, l);
 }
-
-typedef void (*f)(stack_t **, unsigned int), opt;

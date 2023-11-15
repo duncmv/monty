@@ -45,27 +45,3 @@ void free_stack(stack_t *head)
 		head = NULL;
 	}
 }
-
-/**
- * getline - read a line into s, return length
- * @line: buffer to read into
- * @lim: the limit of characters read
- *
- * Return: The number of characters read or 0 if non
- */
-int get_line(char s[], int lim)
-{
-	int c; /* The character read */
-	int i; /* counter variable */
-
-	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
-		s[i] = c;
-
-	if (c == '\n')
-	{
-		s[i] = '\n';
-		i++;
-	}
-	s[i] = '\0';
-	return (i);
-}
