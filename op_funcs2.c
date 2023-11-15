@@ -2,7 +2,7 @@
 
 /**
  * pop - removes the top element of the stack
- * @stack: double pointer to the stack top
+ * @top: double pointer to the stack top
  * @line_num: line number of the operation
  *
  * Return: void
@@ -27,7 +27,7 @@ void pop(stack_t **top, unsigned int line_num)
 
 /**
  * pint - prints the value at the top of the stack
- * @stack: double pointer to the stack top
+ * @top: double pointer to the stack top
  * @line_num: line number of the operation
  *
  * Return: void

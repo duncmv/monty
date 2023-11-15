@@ -22,7 +22,7 @@ void push(stack_t **stack, unsigned int line_number)
 			n = atoi(data.elem);
 			if (n == 0)
 			{
-				_dprintf(2, "L%d: usage: push integer\n", l);
+				_dprintf(ERR_C, "L%d: usage: push integer\n", l);
 				*(&data.run_status) = -1;
 				return;
 			}
@@ -31,7 +31,7 @@ void push(stack_t **stack, unsigned int line_number)
 	new = push_stack(stack, n);
 	if (new == NULL)
 	{
-		_dprintf(2, "Error: malloc failed\n");
+		_dprintf(ERR_C, "Error: malloc failed\n");
 		*(&data.run_status) = -1;
 	}
 }
@@ -50,14 +50,14 @@ void pall(stack_t **stack, unsigned int line_number)
  * swap - swaps the top two elements of the stack
  * @stack: top of stack
  * @line_number: lune number
-*/
+ */
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
 	if (stack_len(*stack) < 2)
 	{
-		_dprintf(2, "L%d: can't swap, stack too short\n", line_number);
+		_dprintf(ERR_C, "L%d: can't swap, stack too short\n", line_number);
 		*(&data.run_status) = -1;
 		return;
 	}
@@ -75,12 +75,12 @@ void swap(stack_t **stack, unsigned int line_number)
  * add - adds the top two elements on the stack
  * @stack: top of stack
  * @line_number: line number
-*/
+ */
 void add(stack_t **stack, unsigned int line_number)
 {
 	if (stack_len(*stack) < 2)
 	{
-		_dprintf(2, "L%d: can't swap, stack too short\n", line_number);
+		_dprintf(ERR_C, "L%d: can't swap, stack too short\n", line_number);
 		*(&data.run_status) = -1;
 		return;
 	}
@@ -94,7 +94,7 @@ void add(stack_t **stack, unsigned int line_number)
  * nop - does nothing
  * @stack: top of stack
  * @line_number: line number
-*/
+ */
 void nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
