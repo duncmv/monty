@@ -46,3 +46,19 @@ void free_stack(stack_t *head)
 		head = NULL;
 	}
 }
+/**
+ * stack_len - return number of elements in stack
+ * @h: top of the stack
+ * Return: number of elem
+ */
+size_t stack_len(const stack_t *h)
+{
+	size_t i = 0;
+
+	if (h != NULL)
+	{
+		i++;
+		i += stack_len(h->next);
+	}
+	return (i);
+}

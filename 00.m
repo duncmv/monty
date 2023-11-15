@@ -1,5 +1,13 @@
-push 1
-push 2
-push 3
+push 5
+nop
+push 6
+nop
+add
+pall
+push 8
+swap
+pall
+add
+
 pall
 pint

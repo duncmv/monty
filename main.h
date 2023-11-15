@@ -66,10 +66,14 @@ operator get_op(char *s);
 void run_op(stack_t **top, operator f, unsigned int, char *);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 size_t _getline(char s[], int lim, FILE *f);
 size_t _dprintf(const int fd, const char *format, ...);
 
 void pop(stack_t **top, unsigned int line_num);
 void pint(stack_t **top, unsigned int line_num);
 
+size_t stack_len(const stack_t *h);
 #endif
