@@ -11,7 +11,7 @@ void pop(stack_t **top, unsigned int line_num)
 {
 	stack_t *tmp;
 
-	if (*top == NULL)
+	if (stack_len(*top) == 0)
 	{
 		_dprintf(ERR_C, "L%d: can't pop an empty stack", line_num);
 		exit(EXIT_FAILURE);
@@ -19,10 +19,12 @@ void pop(stack_t **top, unsigned int line_num)
 
 	tmp = *top;	     /* assign top to a variable */
 	*top = (*top)->next; /* rename *top to *top.next */
-	(*top)->prev = NULL; /* disconnect the prev of *top */
-	tmp->next = NULL;    /* disconect the next of the variable */
-	tmp->prev = NULL;    /* not really needed */
-	free(tmp);	     /* free the variable */
+	if (*top != NULL)
+		(*top)->prev = NULL; /* disconnect the prev of *top */
+
+	tmp->next = NULL; /* disconect the next of the variable */
+	tmp->prev = NULL; /* not really needed */
+	free(tmp);	  /* free the variable */
 }
 
 /**
@@ -34,7 +36,7 @@ void pop(stack_t **top, unsigned int line_num)
  */
 void pint(stack_t **top, unsigned int line_num)
 {
-	if (*top == NULL)
+	if (stack_len(*top) == 0)
 	{
 		_dprintf(ERR_C, "L%d: can't pint, stack empty", line_num);
 		exit(EXIT_FAILURE);
