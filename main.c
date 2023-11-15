@@ -25,16 +25,9 @@ int main(int ac, char **av)
 		_dprintf(2, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (1)
+	while ((x = _getline(line, MAX_LINE, f)) > 0)
 	{
 		*(&run_status) = 0;
-		x = _getline(line, MAX_LINE, f);
-		if (x == -1 || x == 0) /* end of file */
-		{
-			fclose(f);
-			free_stack(top);
-			break;
-		}
 		line_number++;
 		cmd = strtok(line, "\n ");
 		if (cmd != NULL)
@@ -44,12 +37,12 @@ int main(int ac, char **av)
 			run_op(&top, p, line_number, cmd);
 		}
 		if (run_status == -1)
-		{
-			fclose(f);
-			free_stack(top);
-			exit(EXIT_FAILURE);
-		}
+			break;
 	}
+	if (run_status == -1 || x <= 0) /* if x is EOF or an error occured */
+		fclose(f), free_stack(top);
+	if (run_status == -1)
+		exit(EXIT_FAILURE);
 	return (0);
 }
 
