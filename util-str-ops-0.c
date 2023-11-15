@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * getline - read a line into s, return length
+ * _getline - read a line into s, return length
  * @s: buffer to read into
  * @lim: maximum line length
  * @f: file stream to readlines from
@@ -30,7 +30,7 @@ size_t _getline(char s[], int lim, FILE *f)
  * @fd: file descriptor
  * @format: the format string
  *
- * Return number of bytes written
+ * Return: number of bytes written
  */
 size_t _dprintf(const int fd, const char *format, ...)
 {

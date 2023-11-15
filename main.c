@@ -6,7 +6,8 @@ char *elem;
 /**
  * main - main func
  * @ac: arg count
- * @av arg vector
+ * @av: arg vector
+ *
  * Return: 0
  */
 int main(int ac, char **av)

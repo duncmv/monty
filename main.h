@@ -9,6 +9,9 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+extern int run_status;
+extern char *elem;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer

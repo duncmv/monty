@@ -1,7 +1,5 @@
 #include "main.h"
 
-extern int run_status;
-extern char *elem;
 /**
  * push - pushes to stack
  * @stack: top of stack

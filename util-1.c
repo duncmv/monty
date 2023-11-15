@@ -13,8 +13,9 @@ void print_stack(stack_t *top)
 }
 /**
  * push_stack - adds a new element to stack
- * @head: double pointer to top of stack
+ * @top: double pointer to top of stack
  * @n: int to be added as member of node
+ *
  * Return: address of new node
  */
 stack_t *push_stack(stack_t **top, const int n)
