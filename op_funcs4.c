@@ -2,7 +2,7 @@
 
 /**
  * queue - resets the stack to use FIFO
- * @top: double pointer to the top
+ * @stack: double pointer to the top
  * @line_number: line number of the operation
  *
  * Return: void
@@ -20,7 +20,7 @@ void queue(stack_t **stack, unsigned int line_number)
 
 /**
  * stack - resets the stack to use LIFO
- * @top: double pointer to the top
+ * @stack: double pointer to the top
  * @line_number: line number of the operation
  *
  * Return: void
