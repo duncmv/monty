@@ -28,7 +28,8 @@ void push(stack_t **stack, unsigned int line_number)
 			}
 		}
 	}
-	new = push_stack(stack, n);
+
+	new = data.push_stack(stack, n);
 	if (new == NULL)
 	{
 		_dprintf(ERR_C, "Error: malloc failed\n");

@@ -7,21 +7,9 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-#define MAX_LINE 10000	    /* Maximum input line */
+#define MAX_LINE 10000			/* Maximum input line */
 #define ERR_C STDERR_FILENO /* Alias to STDERR_FILENO */
 
-/**
- * struct data_s - store data  to use across funcs
- * @run_status: 0 or -1
- * @elem: arg for command
- */
-typedef struct data_s
-{
-	int run_status;
-	char *elem;
-} data_t;
-
-data_t data;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -59,6 +47,27 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * push_t - dynamic function
+ */
+typedef stack_t *push_t(stack_t **top, const int n);
+
+/**
+ * struct data_s - store data  to use across funcs
+ * @run_status: 0 or -1
+ * @elem: arg for command
+ * @push_stack: handler to dynamically manage LIFO and FIFO push conditions
+ */
+typedef struct data_s
+{
+	char *elem;
+	int run_status;
+	/* handler to dynamically manage LIFO and FIFO push conditions */
+	push_t *push_stack;
+} data_t;
+
+data_t data;
+
 void print_stack(stack_t *top);
 stack_t *push_stack(stack_t **head, const int n);
 void free_stack(stack_t *head);
@@ -83,6 +92,10 @@ void pchar(stack_t **top, unsigned int ln);
 void pstr(stack_t **top, unsigned int ln);
 void rotl(stack_t **top, unsigned int ln);
 void rotr(stack_t **top, unsigned int ln);
+stack_t *push_stack_end(stack_t **top, const int n);
+void reverse_stack(stack_t **top);
+void queue(stack_t **stack, unsigned int line_number);
+void stack(stack_t **stack, unsigned int line_number);
 
 size_t stack_len(const stack_t *h);
 #endif
