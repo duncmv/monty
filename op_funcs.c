@@ -12,11 +12,11 @@ void push(stack_t **stack, unsigned int line_number)
 	char *s;
 
 	if (data.elem == NULL)
-		{
-			_dprintf(ERR_C, "L%d: usage: push integer\n", l);
-			*(&data.run_status) = -1;
-			return;
-		}
+	{
+		_dprintf(ERR_C, "L%d: usage: push integer\n", l);
+		*(&data.run_status) = -1;
+		return;
+	}
 	if (data.elem != NULL)
 	{
 		for (s = data.elem; *s != '\0'; s++)
