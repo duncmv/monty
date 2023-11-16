@@ -23,6 +23,7 @@ int main(int ac, char **av)
 		_dprintf(ERR_C, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
+	data.push_stack = push_stack; /* The default is stack */
 	while ((x = _getline(line, MAX_LINE, f)) > 0)
 	{
 		*(&data.run_status) = 0;
@@ -69,8 +70,11 @@ operator get_op(char *s)
 	    {"pstr", pstr},
 	    {"rotl", rotl},
 	    {"rotr", rotr},
+	    {"queue", queue},
+	    {"stack", stack},
 	    {NULL, NULL},
 	};
+
 	int i, len;
 
 	for (len = 0; ops[len].opcode != NULL; len++)
