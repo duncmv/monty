@@ -21,7 +21,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		for (s = data.elem; *s != '\0'; s++)
 		{
-			if (!isdigit(*s))
+			if (!(isdigit(*s) || *s == '-'))
 			{
 				_dprintf(ERR_C, "L%d: usage: push integer\n", l);
 				*(&data.run_status) = -1;
