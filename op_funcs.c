@@ -9,24 +9,26 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	int n, l = (int)line_number;
 	stack_t *new;
+	char *s;
 
+	if (data.elem == NULL)
+		{
+			_dprintf(ERR_C, "L%d: usage: push integer\n", l);
+			*(&data.run_status) = -1;
+			return;
+		}
 	if (data.elem != NULL)
 	{
-		/*solution for edge case when data.elem is 0*/
-		if (strcmp(data.elem, "0") == 0)
+		for (s = data.elem; *s != '\0'; s++)
 		{
-			n = 0;
-		}
-		else
-		{
-			n = atoi(data.elem);
-			if (n == 0)
+			if (!(isdigit(*s) || *s == '-'))
 			{
 				_dprintf(ERR_C, "L%d: usage: push integer\n", l);
 				*(&data.run_status) = -1;
 				return;
 			}
 		}
+		n = atoi(data.elem);
 	}
 
 	new = data.push_stack(stack, n);

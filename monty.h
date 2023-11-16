@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #define MAX_LINE 10000			/* Maximum input line */
 #define ERR_C STDERR_FILENO /* Alias to STDERR_FILENO */
